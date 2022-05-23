@@ -1,0 +1,24 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #F6F9FF;
+}
+h1, p, label {
+    font-family: Helvetica;
+}
+
+.sections {
+    width: 95%;
+    margin: 8px;
+    display: inline-block;
+    background-color: white;
+    border: 2px solid black;
+    padding: 32px;
+}
+.sections p {
+    display: inline-block;
+    margin: 8px;
+}
+.sections input {
+    width: max-content;
+}
