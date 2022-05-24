@@ -9,30 +9,38 @@
     <title>Based Invoice Listing</title>
 </head>
 <body>
-
 <div id="main">
     <div class="sections" id="inputs">
-        <h1>INPUTS</h1>
-        <form>
-        <p id="inTPID">Trading Partner ID:* <input type="text" id="inpTradingPartnerId"> </p><br>
-        <p id="inDateFrom">Date from: <input type="text" id="inpDateFrom"> </p>
-        <p id="inCount">Count: <input type="text" id="inpCount"> </p><br>
-        <p id="inDateTo">Date to: <input type="text" id="inpDateTo"> </p>
+        <h1 class="title">INPUTS</h1>
+        <form action="index.html" method="post" id="inputForm">
+            <p id="inTPIDTxt">Trading Partner ID: <input type="text" id="inTPID"></p>
+            <small></small>
+            <p id="inDateFromTxt">Date from: <input type="date" id="inDateFrom"></p>
+            <p id="inDateToTxt">Date to: <input type="date" id="inDateTo"></p>
+            <p id="inCountTxt">Count: <input type="number" min="1" max="100" step="1" value="10" id="inCount"></p>
+            <small></small><br>
+            <button type="submit" class="submit-button" id="btnSubmit">SEARCH</button>
         </form>
     </div>
     <div class="sections" id="outputs">
-        <h1>OUTPUTS</h1>
-        <p id="outTPID">Trading Partner ID:</p>
+        <h1 class="title">TRADING PARTNER</h1>
+        <p id="outTPID">ID:</p>
         <p id="outName">Name:</p>
         <p id="outAbbr">Abbreviation:</p><br>
         <p id="outAdd">Address:</p>
     </div>
-    <div class="sections" id="table">
-        <h1>TABLE</h1>
-        <!-- tabulka idkman -->
-        <h9>imagine že je už tu</h9>
+    <div class="sections" id="invoice-list">
+        <h1 class="title">INVOICE LIST</h1>
+        <div class="flex-container">
+            <div class="flex-child"  id="tableContainer"></div>
+            <div class="flex-child" id="buttons">
+                <button class="action-button">action1</button><br>
+                <button class="action-button">action2</button><br>
+                <button class="action-button">action3</button><br>
+            </div>
+        </div>
     </div>
 </div>
-<!-- https://k2demo.abis.cz:44302/V22K2_API_DEMO/Data/TInvoiceOutDM?fields=TradingPartnerId,DocumentIdentificationCalc,AmountGrossC,Currency&conditions=TradingPartnerId -->
+<script src="index.js"></script>
 </body>
 </html>
