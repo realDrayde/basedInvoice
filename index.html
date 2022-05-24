@@ -8,8 +8,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <title>Based Invoice Listing</title>
 </head>
-<body>
-
+<body onload="callApi()">
+<script src="index.js"></script>
 <div id="main">
     <div class="sections" id="inputs">
         <h1>INPUTS</h1>
@@ -22,17 +22,16 @@
     </div>
     <div class="sections" id="outputs">
         <h1>OUTPUTS</h1>
-        <p id="outTPID">Trading Partner ID:</p>
-        <p id="outName">Name:</p>
-        <p id="outAbbr">Abbreviation:</p><br>
-        <p id="outAdd">Address:</p>
+        <p id="TraParId">Trading Partner ID: <label typeof="text" id="lbTraParId"></label></p>
+        <p id="Name">Name: <label typeof="text" id="lbName"></label></p>
+        <p id="Abbr">Abbreviation: <label typeof="text" id="lbAbbr"></label></p>
+        <p id="Address">Address: <label typeof="text" id="lbAddress"></label> </p>
     </div>
     <div class="sections" id="table">
         <h1>TABLE</h1>
-        <!-- tabulka idkman -->
-        <h9>imagine že je už tu</h9>
+
+
     </div>
 </div>
-<!-- https://k2demo.abis.cz:44302/V22K2_API_DEMO/Data/TInvoiceOutDM?fields=TradingPartnerId,DocumentIdentificationCalc,AmountGrossC,Currency&conditions=TradingPartnerId -->
 </body>
 </html>
