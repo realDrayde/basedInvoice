@@ -15,7 +15,7 @@ h1, p, label, td, th {
     flex: 1;
 }
 .sections {
-    width: 90%;
+    width: 93%;
     margin: 40px 8px 8px 8px;
     display: inline-block;
     background-color: #F6F9FF;
@@ -69,7 +69,9 @@ h1, p, label, td, th {
     border-radius: 12px;
     font-size: 32px;
 }
-
+#main {
+    width: 100%;
+}
 .flex-child:first-child {
     margin-right: 20px;
 }
