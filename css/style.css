@@ -56,11 +56,11 @@ h1, p, label, td, th {
     width: 64px;
     font-size: 14px;
     box-shadow: 0 0 10px #D5DFE7;
+    visibility: hidden;
 }
 .title {
     background-color: #EB9E41;
     color: #F6F9FF;
-    /*border: 2px solid black;*/
     margin: -32px 0 32px 0;
     padding: 12px 24px 12px 24px;
     width: fit-content;

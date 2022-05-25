@@ -1,78 +1,58 @@
+// Table values
 const headers = ["Document ID", "Description", "Amount Gross", "Currency"];
 const cols = 4;
+// Access to HTML elements
 const form = document.getElementById('inputForm');
-
-const ID_REQUIRED = "Please enter a Trading Partner ID";
+const actionButtons = document.getElementsByClassName('action-button');
+// Input verification messages
 const ID_INVALID = "Invalid Trading Partner ID";
 const DATE_INVALID = "Invalid date";
-
+// Input and output variables
 let inTPID, inStartDate, inEndDate, inCount;
 let outName, outAbbr, outAdd;
-
-function ShowMessage(input, message, type) {
-    const msg = input.parentNode.querySelector("small");
-    msg.innerText = message;
-    input.className = type ? "success" : "error";
-    return type;
-}
-function ShowError(input, message) {
-    return ShowMessage(input, message, false);
-}
-function ShowSuccess(input, message) {
-    return ShowMessage(input, "", true);
-}
-function HasValue(input, message) {
-    if (input.value.trim() === "") {
-        return ShowError(input, message);
-    }
-    return ShowSuccess(input);
-}
 // Validating the ID input (is numeric?)
-function ValidateID(input, requiredMsg, invalidMsg) {
-    if (!HasValue(input, requiredMsg)) { return false; }
-    if (!isNaN(input)) {
+function ValidateID(input, invalidMsg) {
+    if (isNaN(input)) {
+        alert(invalidMsg);
         return false;
     } else {
     return true;
     }
 }
 // Dates are not needed as of now, so there is no validation yet
-function ValidateDates(input, invalidMsg) {
+function ValidateDates() {
     return true;
 }
 // Listening for form submit to act
 form.addEventListener("submit", function (event) {
     event.preventDefault();
-    ReadInput();
+    if (ReadInput()) {
     PrintTPinfo();
     CreateTable(inCount);
+    }
 })
 // Reading form input from <input> fields
-/*
 function ReadInput() {
-    let idValid = ValidateID(form.elements["inTPID"], ID_REQUIRED, ID_INVALID);
-    let dateValid = true;
+    let idValid = ValidateID(document.getElementById('inTPID').value, ID_INVALID);
+    let dateValid = ValidateDates();
     if (idValid && dateValid) {
-    inTPID = document.getElementById('inTPID').value;
-    inStartDate = document.getElementById('inDateFrom').value;
-    inEndDate = document.getElementById('inDateTo').value;
-    inCount = document.getElementById('inCount').value;
+        inTPID = document.getElementById('inTPID').value;
+        inStartDate = document.getElementById('inDateFrom').value;
+        inEndDate = document.getElementById('inDateTo').value;
+        inCount = document.getElementById('inCount').value;
+        return true;
+    } else {
+        return false;
     }
 }
-
-*/
-function ReadInput() {
-    inTPID = document.getElementById('inTPID').value;
-    inStartDate = document.getElementById('inDateFrom').value;
-    inEndDate = document.getElementById('inDateTo').value;
-    inCount = document.getElementById('inCount').value;
-}
-
 // Generating the table based on how many rows the user wants (inCount)
 function CreateTable(rows) {
-
+    // Making action buttons visible
+    actionButtons[0].style.visibility = 'visible';
+    actionButtons[1].style.visibility = 'visible';
+    actionButtons[2].style.visibility = 'visible';
+    // Resetting the table
     if (document.getElementById('table') != null) { document.getElementById('table').remove(); }
-
     // Basic Table Elements
     let table = document.createElement('table');
     let tableBody = document.createElement('tbody');
