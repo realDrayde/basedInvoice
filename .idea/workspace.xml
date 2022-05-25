@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3b81bd62-07ce-4ea7-8087-bf27ddc3271d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+=======
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <list id="d82adffb-1ebd-449b-a065-7465b6458ceb" name="Changes by rajsus" comment="" />
@@ -55,6 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1653303796184</updated>
       <workItem from="1653303798314" duration="5335000" />
+      <workItem from="1653375890973" duration="1554000" />
     </task>
     <servers />
   </component>
