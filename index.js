@@ -1,9 +1,9 @@
 // API urls
 let urlBase = "https://k2demo.abis.cz:44302/V22K2_API_DEMO/Data/TInvoiceOutDM?fields=TradingPartnerId,DocumentIdentificationCalc,AmountGrossC,Currency&conditions=TradingPartnerId;EQ;";
 // Table values
-const headers = ["Document ID", "Date", "Amount Gross", "Currency"];
-let docID = [], date = [], amgross = [], curr = [];
-let cols = 4;
+const headers = ["Document ID", "Date", "Amount Gross", "Currency", "Download"];
+let docID = [], date = [], amgross = [], curr = [], rid = [];
+let cols = 5;
 // Access to HTML elements
 const form = document.getElementById('inputForm');
 const actionButtons = document.getElementsByClassName('action-button');
@@ -19,19 +19,18 @@ async function CallAPI(url) {
     let response = await fetch(url);
     let object = await response.json();
     let i = 0;
-    //console.log("url: " + url + "\nresponse: " + response + "\nobject: " + object);
     object = object.Items;
     await Promise.all(object.map( async (x) =>{
         let partnerUrl = x.FieldValues[3].Value.ItemURL;
-        let subresponse = await fetch(partnerUrl);
-        let subobject = await subresponse.json();
-        outName = subobject.FieldValues[3].Value;
+        let subresponse_partner = await fetch(partnerUrl);
+        let subobject_partner = await subresponse_partner.json();
+        outName = subobject_partner.FieldValues[3].Value;
         outAbbr = x.FieldValues[3].Value.FieldValues[0].Value;
-        outTPID = subobject.FieldValues[5].Value;
+        outTPID = subobject_partner.FieldValues[5].Value;
         docID[i] = x.FieldValues[1].Value;
         date[i] = x.FieldValues[4].Value;
         amgross[i] = x.FieldValues[0].Value;
-        curr[i] = x.FieldValues[3].Value.FieldValues[1].Value;
+        curr[i] = x.FieldValues[2].Value.FieldValues[1].Value;
         i++;
     }))
     inCount = i;
@@ -67,7 +66,6 @@ function ReadInput() {
         //inEndDate = document.getElementById('inDateTo').value;
         //inCount = document.getElementById('inCount').value;
         let gigachad = urlBase + inTPID;
-        //console.log(gigachad);
         CallAPI(gigachad);
         return true;
     } else {
@@ -109,7 +107,6 @@ function CreateTable(rows) {
             let tableCol = document.createElement('td');
             tableCol.setAttribute('id','col'+j);
             tableRow.appendChild(tableCol);
-            //tableCol.appendChild(document.createTextNode(i + " " + j));
             switch (j) {
                 case 0:
                     tableCol.appendChild(document.createTextNode(docID[i]));
@@ -122,6 +119,19 @@ function CreateTable(rows) {
                     break;
                 case 3:
                     tableCol.appendChild(document.createTextNode(curr[i]));
+                    break;
+                case 4:
+                    let icon = document.createElement('icon');
+                    let btnDown = document.createElement('button');
+                    btnDown.appendChild(icon);
+                    tableCol.appendChild(btnDown);
+                    icon.classList.add("fa", "fa-download");
+                    btnDown.style.width = '100%';
+                    btnDown.style.height = '100%';
+                    btnDown.addEventListener('click', () => {
+                        let urlDown = "https://k2demo.abis.cz:44302/V22K2_API_DEMO/Formation/download/Special/CreatePDF/PAS?InvoiceOutRID=" + docID[i];
+                        window.open(urlDown);
+                    })
                     break;
             }
             //tableCol.appendChild(document.createTextNode(data));
